@@ -553,13 +553,11 @@ Func smartZap($minDE = -1)
 	If $g_bSmartZapFTW Then
 		SetLog("====== SmartZap/NoobZap FTW Mode ======", $COLOR_INFO)
 	Else
-		ZapSpecials($aSpells) ; Collect Special Coins For Events
 		Return $performedZap
 	EndIf
 
 	If _CheckPixel($aWonOneStar, True) Then
 		SetLog("One Star already reached.", $COLOR_INFO)
-		ZapSpecials($aSpells) ; Collect Special Coins For Events
 		Return $performedZap
 	EndIf
 
@@ -582,7 +580,6 @@ Func smartZap($minDE = -1)
 	Local $aEasyPrey = easyPreySearch()
 	If UBound($aEasyPrey) = 0 Then
 		SetLog("No easy targets found!", $COLOR_INFO)
-		ZapSpecials($aSpells) ; Collect Special Coins For Events
 		Return $performedZap
 	Else
 		; Get the number of targets
@@ -603,7 +600,6 @@ Func smartZap($minDE = -1)
 		If $iPercentageNeeded > $iTargetCount Then
 			SetLog("No chance to win!", $COLOR_INFO)
 			SetLog("Needed percentage (" & $iPercentageNeeded & ") is greater than targets, we can zap (" & $iTargetCount & ")!", $COLOR_INFO)
-			ZapSpecials($aSpells) ; Collect Special Coins For Events
 			Return $performedZap
 		EndIf
 	EndIf
@@ -619,49 +615,8 @@ Func smartZap($minDE = -1)
 		SetLog("Hooray, One Star reached, we have won!", $COLOR_INFO)
 	EndIf
 
-	ZapSpecials($aSpells) ; Collect Special Coins For Events
 	Return $performedZap
 EndFunc   ;==>smartZap
-
-Func ZapSpecials($aSpells)
-	If Not $g_bRunState Then Return
-
-	Local $bNoNeedToContinue = False, $sIsMoreThanOne = "", $iWizardTowers = 0
-	Local $sDir = @ScriptDir & "\imgxml\Resources\Collect\EventCoin"
-
-	; Collect Special Coins For Events
-	If IsAttackPage() And $aSpells[0][4] + $aSpells[1][4] > 0 Then
-		SetLog("Searching For Wizard Towers", $COLOR_ACTION)
-		Local $aMagicalCrystals = QuickMIS("CNX", $sDir, 50, 20, 810, 625)
-		If IsArray($aMagicalCrystals) And UBound($aMagicalCrystals) > 0 Then
-			$iWizardTowers = UBound($aMagicalCrystals)
-			If $iWizardTowers > 3 Then $iWizardTowers = 3
-			If $iWizardTowers > 1 Then $sIsMoreThanOne = "s"
-			SetLog("Found " & $iWizardTowers & " Wizard Tower" & $sIsMoreThanOne, $COLOR_SUCCESS)
-			For $i = 0 To UBound($aMagicalCrystals) - 1
-				While QuickMIS("BC1", $sDir, $aMagicalCrystals[$i][1] - 10, $aMagicalCrystals[$i][2] - 10, $aMagicalCrystals[$i][1] + 10, $aMagicalCrystals[$i][2] + 10)
-					If Not $g_bRunState Then Return
-					If IsProblemAffect() Then Return
-					zapBuilding($aSpells, $aMagicalCrystals[$i][1] + 10, $aMagicalCrystals[$i][2] + 30)
-					SetLog("Lightning Spells Left: " & $aSpells[0][4] + $aSpells[1][4], $COLOR_INFO)
-					If Not IsAttackPage() Or $aSpells[0][4] + $aSpells[1][4] < 1 Then
-						If Not IsAttackPage() Then SetLog("Battle Ended, it`s Time To Exit!", $COLOR_INFO)
-						If $aSpells[0][4] + $aSpells[1][4] < 1 Then
-							SetLog("No Lightning Spells Left, it`s Time To Exit!", $COLOR_INFO)
-							If _Sleep(5000) Then Return ; In Case Battle Ended After Dropping all Spells, So The Bot Don`t Waste Time Waiting For Ok Surrender Window
-						EndIf
-						$bNoNeedToContinue = True
-						ExitLoop
-					EndIf
-					If _Sleep(2000) Then Return
-				WEnd
-				If $bNoNeedToContinue Then ExitLoop
-			Next
-		Else
-			SetLog("No Wizard Towers Found, Exit", $COLOR_INFO)
-		EndIf
-	EndIf
-EndFunc   ;==>ZapSpecials
 
 ; This function taken and modified by the CastSpell function to make Zapping works
 Func zapBuilding(ByRef $Spells, $x, $y)
