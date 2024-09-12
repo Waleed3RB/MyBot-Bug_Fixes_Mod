@@ -624,7 +624,7 @@ EndFunc   ;==>SwitchCOCAcc_ConfirmAccount
 
 Func SwitchCOCAcc_ConnectedSCID(ByRef $bResult)
 	For $i = 0 To 20 ; Checking Blue Reload button continuously in 20sec
-		Local $aSuperCellIDReload = decodeSingleCoord(findImage("SupercellID Reload", $g_sImgSupercellIDReload, GetDiamondFromRect("570,145,635,200"), 1, True, Default))
+		Local $aSuperCellIDReload = decodeSingleCoord(findImage("SupercellID Reload", $g_sImgSupercellIDReload, GetDiamondFromRect("300,145,360,200"), 1, True, Default))
 		If IsArray($aSuperCellIDReload) And UBound($aSuperCellIDReload, 1) >= 2 Then
 			Click($aSuperCellIDReload[0], $aSuperCellIDReload[1], 1, 0, "Click Reload SC_ID")
 			Setlog("   1. Click Reload Supercell ID")
