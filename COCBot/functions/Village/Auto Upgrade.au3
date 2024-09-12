@@ -82,7 +82,7 @@ Func _AutoUpgrade()
 		Click($aTmpCoord[0][1] + 20, $aTmpCoord[0][2])
 		If _Sleep($DELAYAUTOUPGRADEBUILDING1) Then Return
 
-		$g_aUpgradeNameLevel = BuildingInfo(242, 468 + $g_iBottomOffsetY)
+		$g_aUpgradeNameLevel = BuildingInfo(242, 476 + $g_iBottomOffsetY)
 		Local $aUpgradeButton, $aTmpUpgradeButton
 
 		; check if any wrong click by verifying the presence of the Upgrade button (the hammer)

@@ -233,7 +233,7 @@ Func UpgradeValue($inum, $bRepeat = False) ;function to find the value and type 
 
 	If $bOopsFlag And $g_bDebugImageSave Then SaveDebugImage("ButtonView")
 
-	$aResult = BuildingInfo(242, 468 + $g_iBottomOffsetY)
+	$aResult = BuildingInfo(242, 476 + $g_iBottomOffsetY)
 	If $aResult[0] > 0 Then
 		$g_avBuildingUpgrades[$inum][4] = $aResult[1] ; Store bldg name
 		GUICtrlSetData($g_hTxtUpgradeName[$inum], $g_avBuildingUpgrades[$inum][4]) ; Set GUI name to match $g_avBuildingUpgrades variable

@@ -15,7 +15,7 @@
 #include-once
 
 Func ClockTimeGained()
-Local $aResult = BuildingInfo(242, 468 + $g_iBottomOffsetY)
+Local $aResult = BuildingInfo(242, 476 + $g_iBottomOffsetY)
 Local $TowerClockLevel = $aResult[2]
 SetLog("Clock Tower Level " & $TowerClockLevel & " Detected")
 Local $ClockTimeGained = 0
@@ -50,7 +50,7 @@ Func StartClockTowerBoost($bSwitchToBB = False, $bSwitchToNV = False)
 
 	If Not $g_bChkStartClockTowerBoost Then Return
 	If Not $g_bRunState Then Return
-	
+
 	Local $TimeGained = 0
 
 	If $bSwitchToBB Then

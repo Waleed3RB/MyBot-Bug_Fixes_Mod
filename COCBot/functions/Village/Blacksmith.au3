@@ -65,7 +65,7 @@ Func Blacksmith($bTest = False)
 	If Not $g_bRunState Then Return
 	If _Sleep(1500) Then Return ; Wait for window to open
 
-	Local $BuildingInfo = BuildingInfo(242, 468 + $g_iBottomOffsetY)
+	Local $BuildingInfo = BuildingInfo(242, 476 + $g_iBottomOffsetY)
 	SetLog("Blacksmith is level " & $BuildingInfo[2])
 
 	If Not FindBSButton() Then

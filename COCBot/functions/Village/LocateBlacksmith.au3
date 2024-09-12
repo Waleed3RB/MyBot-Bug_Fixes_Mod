@@ -5,7 +5,7 @@
 ; Parameters ....:
 ; Return values .: None
 ; Author ........: Moebius14 (Dec 2023)
-; Modified ......: 
+; Modified ......:
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2024
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -77,7 +77,7 @@ Func _LocateBlacksmith($bCollect = True)
 			ClickAway()
 			Return
 		EndIf
-		Local $sBlacksmithInfo = BuildingInfo(242, 468 + $g_iBottomOffsetY)
+		Local $sBlacksmithInfo = BuildingInfo(242, 476 + $g_iBottomOffsetY)
 		If $sBlacksmithInfo[0] > 1 Or $sBlacksmithInfo[0] = "" Then
 			If StringInStr($sBlacksmithInfo[1], "smith") = 0 Then
 				Local $sLocMsg = ($sBlacksmithInfo[0] = "" ? "Nothing" : $sBlacksmithInfo[1])
