@@ -1123,11 +1123,11 @@ Func IsSCIDAccComplete($iAccounts = 3)
 				EndIf
 			Else
 				Local $x = $aiHeadCoord[0] - 10
-				Local $y = $aiHeadCoord[1] - 26
+				Local $y = $aiHeadCoord[1] - 25
 
 				; now crop image to have only village name and put in $hClone
 				Local $oBitmap = _GDIPlus_BitmapCreateFromHBITMAP($g_hHBitmap2)
-				Local $hClone = _GDIPlus_BitmapCloneArea($oBitmap, $x, $y, 65, 18, $GDIP_PXF24RGB)
+				Local $hClone = _GDIPlus_BitmapCloneArea($oBitmap, $x, $y, 65, 20, $GDIP_PXF24RGB)
 
 				_GDIPlus_ImageSaveToFile($hClone, $sProfileFolder & $filename)
 				SetSwitchAccLog($g_asProfileName[$i + $j] & " image Stored: ")
