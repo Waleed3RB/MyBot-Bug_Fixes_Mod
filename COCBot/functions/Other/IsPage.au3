@@ -285,3 +285,37 @@ Func IsBlacksmithPage($bSetLog = True, $iLoop = 30)
 	If $iLoop > 1 Then AndroidPageError("IsBlacksmithPage")
 	Return False
 EndFunc   ;==>IsBlacksmithPage
+
+Func IsTreasureHuntPage()
+	If Not _ColorCheck(_GetPixelColor(482, 521, True), "CBCDD3", 20, Default) Then Return False ; Hammer Icon
+	SetLog("Treasure Chest Found!", $COLOR_INFO)
+	If _Sleep(1000) Then Return
+
+	Local $aPixelSearch, $iTry = 0, $iTry2 = 0
+	While True
+		$aPixelSearch = _PixelSearch(481, 520, 483, 522, "CBCDD3", 10, True) ; Hammer Icon
+		$iTry2 += 1
+		If IsArray($aPixelSearch) And UBound($aPixelSearch) = 2 Then
+			$iTry += 1
+			Click(Random(350, 520, 1), Random(305, 450, 1)) ; Click On Chest
+			SetLog("Open Treasure Chest #" & $iTry, $COLOR_ACTION)
+			If $iTry > 3 Then
+				If _Sleep(5000) Then Return ; Wait For Opening Chest Animation
+				ExitLoop
+			EndIf
+		EndIf
+		If _Sleep(1000) Then Return
+		If $iTry2 > 9 Then ExitLoop
+	WEnd
+
+	For $i = 1 To 3
+		If _ColorCheck(_GetPixelColor(435, 535, True), "8BD43A", 20, Default) Then
+			SetLog("Treasure Chest Opend Successfully!", $COLOR_SUCCESS)
+			Click(430, 525) ; Continue Button
+			If _Sleep(1000) Then Return
+			Return True
+		EndIf
+		If _Sleep(3000) Then Return
+	Next
+	Return False
+EndFunc

@@ -43,7 +43,7 @@ Global $aCancelFight2[4] = [830, 59, 0xD80408, 20] ; Cancel Fight Scene 2nd pixe
 Global $aEndFightSceneBtn[4] = [429, 529 + $g_iMidOffsetY, 0xE1F989, 20] ; Victory or defeat scene button = green top of button
 Global $aEndFightSceneAvl[4] = [241, 196 + $g_iMidOffsetY, 0xFFF098, 20] ; Victory or defeat scene left side ribbon = light gold
 Global $aEndFightSceneReportGold = $aEndFightSceneAvl ; Missing... TripleM ???
-Global $aReturnHomeButton[4] = [430, 566 + $g_iMidOffsetY, 0x6CBB1F, 15] ; Return Home Button, End Battle Screen
+Global $aReturnHomeButton[4] = [430, 566 + $g_iMidOffsetY, 0x6CBB1F, 30] ; Return Home Button, End Battle Screen
 Global $aChatTab[4] = [412, 290 + $g_iMidOffsetY, 0xF3AA28, 20] ; Chat Window Open, Main Screen
 Global $aChatTab2[4] = [412, 305 + $g_iMidOffsetY, 0xF3AA28, 20] ; Chat Window Open, Main Screen
 Global $aChatTab3[4] = [412, 325 + $g_iMidOffsetY, 0xEA8A3B, 20] ; Chat Window Open, Main Screen
